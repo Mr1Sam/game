@@ -2,27 +2,27 @@
 using namespace std;
 
 int main() {
+    // Example of a finite state machine that checks for the occurrence of substrings 1, 2, 3
+    int states1 = 4;
+    vector<int> alphabetInt = {1, 2, 3};
+    int initialState1 = 0;
+    int finalState1 = 3;
+    vector<vector<int>> transitions1 = {{1, 0, 0}, {1, 2, 0}, {1, 0, 3}, {3, 3, 3}};
+    FiniteStateMachine<int> fsmInt(states1, alphabetInt, initialState1, finalState1, transitions1);
 
-    //пример конечного автомата который проверяет вхождение подстроки 1, 2, 3
-    int states = 4; 
-    vector <int> alphabetint = {1, 2, 3}; 
-    int state = 0; 
-    int final_state = 3; 
-    vector <vector <int>> transitions = {{1, 0, 0}, {1, 2, 0}, {1, 0, 3}, {3, 3, 3}};
-    FiniteStateMachine<int> FiniteStateMachineInt(states, alphabetint, state, final_state, transitions);
+    vector<int> inputListInt = {1, 2, 2, 2, 2, 1, 1};
+    cout << "Result for FSM with integers: " << fsmInt.check_str(inputListInt) << endl;
 
-    vector<int> listint = { 1, 2, 2, 2, 2, 1, 1 };
-    cout << FiniteStateMachineInt.check_str(listint) << endl;
+    // Example of a finite state machine that checks for the occurrence of either 'abd' or 'cbc'
+    int states2 = 6;
+    vector<char> alphabetChar = {'a', 'b', 'c', 'd'};
+    int initialState2 = 0;
+    int finalState2 = 5;
+    vector<vector<int>> transitions2 = {{1, 0, 3, 0}, {1, 2, 3, 0}, {1, 0, 3, 5},
+                                        {1, 4, 3, 0}, {1, 0, 5, 0}, {5, 5, 5, 5}};
+    vector<char> inputListChar = {'a', 'b', 'c', 'b', 'c', 'b', 'b', 'b'};
+    FiniteStateMachine<char> fsmChar(states2, alphabetChar, initialState2, finalState2, transitions2);
+    cout << "Result for FSM with characters: " << fsmChar.check_str(inputListChar) << endl;
 
-
-    //пример конечного автомата который проверяет вхождение подстроки либо abd либо cbc
-    states = 6; 
-    vector <char> alphabet = {'a', 'b', 'c', 'd'}; 
-    state = 0; 
-    final_state = 5; 
-    transitions = {{1, 0, 3, 0}, {1, 2, 3, 0}, {1, 0, 3, 5},
-                   {1, 4, 3, 0}, {1, 0, 5, 0}, {5, 5, 5, 5}};
-    vector<char> listchar = {'a', 'b', 'c', 'b', 'c', 'b', 'b', 'b'};
-    FiniteStateMachine<char> FiniteStateMachineChar(states, alphabet, state, final_state, transitions);
-    cout << FiniteStateMachineChar.check_str(listchar) << endl;
+    return 0;
 }
